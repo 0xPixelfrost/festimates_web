@@ -1,171 +1,676 @@
 <!DOCTYPE HTML>
-<!--
-	Alpha by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
 <html>
-	<head>
-		<title>Alpha by HTML5 UP</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-	</head>
-	<body class="landing is-preload">
-		<div id="page-wrapper">
 
-			<!-- Header -->
-				<header id="header" class="alt">
-					<h1><a href="index.html">Alpha</a> by HTML5 UP</h1>
-					<nav id="nav">
-						<ul>
-							<li><a href="index.html">Home</a></li>
-							<li>
-								<a href="#" class="icon solid fa-angle-down">Layouts</a>
-								<ul>
-									<li><a href="generic.html">Generic</a></li>
-									<li><a href="contact.html">Contact</a></li>
-									<li><a href="elements.html">Elements</a></li>
-									<li>
-										<a href="#">Submenu</a>
-										<ul>
-											<li><a href="#">Option One</a></li>
-											<li><a href="#">Option Two</a></li>
-											<li><a href="#">Option Three</a></li>
-											<li><a href="#">Option Four</a></li>
-										</ul>
-									</li>
-								</ul>
-							</li>
-							<li><a href="#" class="button">Sign Up</a></li>
-						</ul>
-					</nav>
-				</header>
+<head>
+	<title>Festimates</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="preconnect" href="https://fonts.googleapis.com" />
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+	<link href="https://fonts.googleapis.com/css2?family=Rock+Salt&display=swap" rel="stylesheet" />
+	<link rel="stylesheet" href="assets/css/main.css" />
+	<style>
+		#header {
+			background: none;
+			isolation: isolate;
+		}
 
-			<!-- Banner -->
-				<section id="banner">
-					<h2>Alpha</h2>
-					<p>Another fine responsive site template freebie by HTML5 UP.</p>
-					<ul class="actions special">
-						<li><a href="#" class="button primary">Sign Up</a></li>
-						<li><a href="#" class="button">Learn More</a></li>
-					</ul>
-				</section>
+		#header::after {
+			content: '';
+			position: absolute;
+			inset: -10px;
+			background-image: url('assets/images/holi-festival.webp');
+			background-size: cover;
+			background-position: center;
+			filter: blur(2.5px);
+			z-index: -2;
+		}
 
-			<!-- Main -->
-				<section id="main" class="container">
+		#header::before {
+			background: rgba(0, 0, 0, 0.55);
+			z-index: -1;
+		}
 
-					<section class="box special">
-						<header class="major">
-							<h2>Introducing the ultimate mobile app
-							<br />
-							for doing stuff with your phone</h2>
-							<p>Blandit varius ut praesent nascetur eu penatibus nisi risus faucibus nunc ornare<br />
-							adipiscing nunc adipiscing. Condimentum turpis massa.</p>
+		#header #logo {
+			position: relative;
+			z-index: 1;
+		}
+
+		#main {
+			position: relative;
+			z-index: 2;
+		}
+
+		#highlights {
+			position: relative;
+			z-index: 3;
+		}
+
+		#footer {
+			position: relative;
+			z-index: 4;
+		}
+
+		#logo h1,
+		#logo h1 a {
+			font-family: 'Rock Salt', cursive;
+			text-transform: none;
+		}
+
+		.app-store-tiles {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 0.75em;
+		}
+
+		.app-store-tile {
+			flex-shrink: 0;
+		}
+
+		.app-store-tile a {
+			display: flex;
+			align-items: center;
+			gap: 0.6em;
+			padding: 0.5em 1em;
+			background: #fff;
+			border-radius: 0.4em;
+			text-decoration: none;
+			transition: opacity 0.2s ease;
+			min-width: 12em;
+		}
+
+		.app-store-tile a:hover {
+			opacity: 0.9;
+		}
+
+		.app-store-tile .icon {
+			flex-shrink: 0;
+			font-size: 1.35em;
+			color: #000;
+		}
+
+		.app-store-tile .tile-text {
+			line-height: 1.2;
+		}
+
+		.app-store-tile .tile-label {
+			display: block;
+			font-size: 0.6em;
+			color: #666;
+			text-transform: uppercase;
+			letter-spacing: 0.02em;
+		}
+
+		.app-store-tile .tile-name {
+			display: block;
+			font-size: 0.95em;
+			font-weight: 700;
+			color: #000;
+		}
+
+		.footer-upper-bar {
+			display: flex;
+			flex-wrap: wrap;
+			align-items: center;
+			padding-bottom: 3.5rem;
+			margin-bottom: 3.5rem;
+		}
+
+		.footer-upper-bar__item {
+			flex: 1 1 0;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+
+		.footer-social {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 1rem;
+			align-items: center;
+		}
+
+		.footer-social a {
+			color: #eee;
+			text-decoration: none;
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			width: 2.25em;
+			height: 2.25em;
+		}
+
+		.footer-social a:hover {
+			color: #fff;
+		}
+
+		.footer-social a i {
+			font-size: 1.25em;
+		}
+
+		.footer-lower-bar {
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: space-between;
+			gap: 0.5rem;
+		}
+
+		.footer-lower-bar a {
+			flex: 1 1 auto;
+			min-width: 0;
+			text-align: center;
+		}
+
+		.footer-lower-bar a {
+			color: rgba(255, 255, 255, 0.7);
+			text-decoration: none;
+			text-transform: uppercase;
+			font-size: 0.8em;
+			letter-spacing: 0.1em;
+		}
+
+		.footer-lower-bar a:hover {
+			color: #fff;
+		}
+
+		.footer-overlay {
+			display: none;
+			position: fixed;
+			inset: 0;
+			background: rgba(0, 0, 0, 0.6);
+			z-index: 1000;
+			align-items: center;
+			justify-content: center;
+			padding: 2rem;
+			overflow-y: auto;
+		}
+
+		.footer-overlay.is-open {
+			display: flex;
+		}
+
+		.footer-overlay-panel {
+			background: #fff;
+			max-width: 520px;
+			width: 100%;
+			max-height: 90vh;
+			overflow-y: auto;
+			padding: 2rem;
+			border-radius: 0.35em;
+			position: relative;
+		}
+
+		.footer-overlay-panel h2 {
+			color: #484d55;
+			font-size: 1.4em;
+			margin-bottom: 1.25rem;
+		}
+
+		.footer-overlay-panel .overlay-body {
+			color: #555;
+			line-height: 1.6;
+			font-size: 0.95em;
+		}
+
+		.footer-overlay-panel .overlay-body p {
+			margin-bottom: 1rem;
+		}
+
+		.footer-overlay-panel .form-group {
+			margin-bottom: 1rem;
+		}
+
+		.footer-overlay-panel .form-group label {
+			display: block;
+			font-weight: 700;
+			color: #484d55;
+			margin-bottom: 0.35rem;
+			font-size: 0.9em;
+		}
+
+		.footer-overlay-panel .form-group input,
+		.footer-overlay-panel .form-group textarea {
+			width: 100%;
+			padding: 0.6rem 0.75rem;
+			border: 1px solid #ddd;
+			border-radius: 0.35em;
+			font-size: 1em;
+		}
+
+		.footer-overlay-panel .form-group textarea {
+			min-height: 100px;
+			resize: vertical;
+		}
+
+		@media (max-width: 736px) {
+			.footer-overlay {
+				padding: 0;
+				align-items: stretch;
+			}
+
+			.footer-overlay-panel {
+				max-width: none;
+				width: 100%;
+				max-height: none;
+				height: 100%;
+				min-height: 100vh;
+				min-height: 100dvh;
+				border-radius: 0;
+			}
+		}
+
+		#copyright {
+			border-top: none;
+			margin-top: 0;
+			padding-top: 0;
+		}
+
+		#bottom-bar {
+			background: #282b34;
+			padding: 0.75rem 2rem 0.5rem;
+		}
+
+		#bottom-bar .footer-lower-bar {
+			margin-bottom: 0.25rem;
+		}
+
+		#bottom-bar #copyright ul {
+			box-shadow: none;
+			padding: 0;
+		}
+	</style>
+</head>
+
+<body class="no-sidebar is-preload">
+	<div id="page-wrapper">
+
+		<!-- Header -->
+		<section id="header" class="wrapper">
+
+			<!-- Logo -->
+			<div id="logo">
+				<h1>Festimates</h1>
+				<p style="color: #ccc;">Your Crew. Your Festival. Synchronized.</p>
+			</div>
+
+		</section>
+
+		<!-- Main -->
+		<div id="main" class="wrapper style2">
+			<div class="title">Festival Companion</div>
+			<div class="container">
+
+				<!-- Content -->
+				<div id="content">
+					<article class="box post">
+						<header class="style1">
+							<h2>Plan your festival, coordinate your mates and never miss a beat.<br
+									class="mobile-hide" />
+								The ultimate companion for your festival summer.</h2>
+							<p>Launching soon to the App Store and Google Play.</p>
 						</header>
-						<span class="image featured"><img src="images/pic01.jpg" alt="" /></span>
-					</section>
+						<!--<a href="#" class="image featured">
+							<img src="images/pic01.jpg" alt="" />
+						</a>-->
+						<p>
+							You’re standing at the entrance of a massive festival with 150 bands spread across five
+							stages. You’ve spent hours hand-picking your must-see acts, but your friends’ plans remain a
+							total mystery. As soon as you hit the crowd, the network dies. Chat messages hang on
+							"sending," the group scatters, and your coordination vanishes into thin air. Instead of
+							losing yourself in the music, you are left navigating the chaos alone, disconnected from the
+							very people you came to celebrate with.
+						</p>
+						<p>Festimates was built to end the festival chaos and bring the focus back to the music. Our app
+							is your digital survival guide, designed to work even in the deepest signal black holes with
+							full offline-sync. Discover festivals, mark the artists you live for, and get smart
+							reminders before they hit the stage. But the real magic happens with your Festival Crew:
+							instantly see which bands your friends are watching and where your schedules overlap. No
+							more guessing, no more wandering alone—just perfect "group matches" and shared front-row
+							moments.</p>
+						<p>Beyond the weekend, Festimates keeps the pulse alive. Stay connected by following your crew's
+							upcoming festival journeys, ensuring you never miss the next legendary road trip. Build your
+							personal musical legacy by rating every performance you witness, creating a permanent
+							archive of your season's highlights. Stop chasing your squad and start living the festival
+							summer you’ve always dreamed of.
+						</p>
+					</article>
+				</div>
 
-					<section class="box special features">
-						<div class="features-row">
-							<section>
-								<span class="icon solid major fa-bolt accent2"></span>
-								<h3>Magna etiam</h3>
-								<p>Integer volutpat ante et accumsan commophasellus sed aliquam feugiat lorem aliquet ut enim rutrum phasellus iaculis accumsan dolore magna aliquam veroeros.</p>
-							</section>
-							<section>
-								<span class="icon solid major fa-chart-area accent3"></span>
-								<h3>Ipsum dolor</h3>
-								<p>Integer volutpat ante et accumsan commophasellus sed aliquam feugiat lorem aliquet ut enim rutrum phasellus iaculis accumsan dolore magna aliquam veroeros.</p>
-							</section>
-						</div>
-						<div class="features-row">
-							<section>
-								<span class="icon solid major fa-cloud accent4"></span>
-								<h3>Sed feugiat</h3>
-								<p>Integer volutpat ante et accumsan commophasellus sed aliquam feugiat lorem aliquet ut enim rutrum phasellus iaculis accumsan dolore magna aliquam veroeros.</p>
-							</section>
-							<section>
-								<span class="icon solid major fa-lock accent5"></span>
-								<h3>Enim phasellus</h3>
-								<p>Integer volutpat ante et accumsan commophasellus sed aliquam feugiat lorem aliquet ut enim rutrum phasellus iaculis accumsan dolore magna aliquam veroeros.</p>
-							</section>
-						</div>
-					</section>
-
-					<div class="row">
-						<div class="col-6 col-12-narrower">
-
-							<section class="box special">
-								<span class="image featured"><img src="images/pic02.jpg" alt="" /></span>
-								<h3>Sed lorem adipiscing</h3>
-								<p>Integer volutpat ante et accumsan commophasellus sed aliquam feugiat lorem aliquet ut enim rutrum phasellus iaculis accumsan dolore magna aliquam veroeros.</p>
-								<ul class="actions special">
-									<li><a href="#" class="button alt">Learn More</a></li>
-								</ul>
-							</section>
-
-						</div>
-						<div class="col-6 col-12-narrower">
-
-							<section class="box special">
-								<span class="image featured"><img src="images/pic03.jpg" alt="" /></span>
-								<h3>Accumsan integer</h3>
-								<p>Integer volutpat ante et accumsan commophasellus sed aliquam feugiat lorem aliquet ut enim rutrum phasellus iaculis accumsan dolore magna aliquam veroeros.</p>
-								<ul class="actions special">
-									<li><a href="#" class="button alt">Learn More</a></li>
-								</ul>
-							</section>
-
-						</div>
-					</div>
-
-				</section>
-
-			<!-- CTA -->
-				<section id="cta">
-
-					<h2>Sign up for beta access</h2>
-					<p>Blandit varius ut praesent nascetur eu penatibus nisi risus faucibus nunc.</p>
-
-					<form>
-						<div class="row gtr-50 gtr-uniform">
-							<div class="col-8 col-12-mobilep">
-								<input type="email" name="email" id="email" placeholder="Email Address" />
-							</div>
-							<div class="col-4 col-12-mobilep">
-								<input type="submit" value="Sign Up" class="fit" />
-							</div>
-						</div>
-					</form>
-
-				</section>
-
-			<!-- Footer -->
-				<footer id="footer">
-					<ul class="icons">
-						<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-						<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
-						<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-						<li><a href="#" class="icon brands fa-github"><span class="label">Github</span></a></li>
-						<li><a href="#" class="icon brands fa-dribbble"><span class="label">Dribbble</span></a></li>
-						<li><a href="#" class="icon brands fa-google-plus"><span class="label">Google+</span></a></li>
-					</ul>
-					<ul class="copyright">
-						<li>&copy; Untitled. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
-					</ul>
-				</footer>
-
+			</div>
 		</div>
 
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.dropotron.min.js"></script>
-			<script src="assets/js/jquery.scrollex.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
+		<!-- Highlights -->
+		<section id="highlights" class="wrapper style3">
+			<div class="title">App Highlights</div>
+			<div class="container">
+				<div class="row aln-center">
+					<div class="col-4 col-12-medium">
+						<section class="highlight">
+							<a href="#" class="image featured"><img
+									src="assets/images/travelers-looking-into-distance.webp" alt="" /></a>
+							<h3>Discover Your Festival Summer</h3>
+							<p>Find festivals and organize your lineup. Mark the bands you want to hear. Push
+								notifications remind you of upcoming festivals, bands, and which of your friends are
+								there.</p>
+						</section>
+					</div>
+					<div class="col-4 col-12-medium">
+						<section class="highlight">
+							<a href="#" class="image featured"><img
+									src="assets/images/camping-by-lake-with-good-friends.webp" alt="" /></a>
+							<h3>Sync Your Crew, Maximize the Vibe</h3>
+							<p>Connect with friends and start a shared festival crew. See which bands your friends want
+								to visit. Find the best match and spend the festival together as a group.</p>
+						</section>
+					</div>
+					<div class="col-4 col-12-medium">
+						<section class="highlight">
+							<a href="#" class="image featured"><img src="assets/images/man-plays-saxophone.webp"
+									alt="" /></a>
+							<h3>Never Lose the Connection</h3>
+							<p>See which other festivals your mates are attending and never miss a trip. Rate your
+								favorite bands and never lose track of what you loved.</p>
+						</section>
+					</div>
+				</div>
+			</div>
+		</section>
 
-	</body>
+
+		<!-- Footer --><!--
+		<section id="footer" class="wrapper">
+			<div class="title">The Rest Of It</div>
+			<div class="container">
+				<div class="footer-upper-bar">
+					<div class="footer-upper-bar__item">
+						<section class="app-store-tile">
+							<a href="https://www.festimates.app" target="_blank" rel="noopener">
+								<span class="icon brands fa-apple"></span>
+								<span class="tile-text">
+									<span class="tile-label">Download on the</span>
+									<span class="tile-name">App Store</span>
+								</span>
+							</a>
+						</section>
+					</div>
+					<div class="footer-upper-bar__item">
+						<section class="app-store-tile">
+							<a href="https://www.festimates.app" target="_blank" rel="noopener">
+								<span class="icon brands fa-google-play"></span>
+								<span class="tile-text">
+									<span class="tile-label">GET IT ON</span>
+									<span class="tile-name">Google Play</span>
+								</span>
+							</a>
+						</section>
+					</div>
+					<div class="footer-upper-bar__item footer-social">
+						<a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+					</div>
+				</div>
+			</div>
+		</section>
+-->
+	</div>
+
+	<!-- Bottom Bar -->
+	<div id="bottom-bar">
+		<nav class="footer-lower-bar">
+			<a href="#" data-dialog="contact">Contact</a>
+			<a href="#" data-dialog="impressum">Imprint</a>
+			<a href="?page=privacy" data-dialog="datenschutz">Privacy Policy</a>
+			<a href="?page=terms" data-dialog="eula">T&Cs</a>
+		</nav>
+		<div id="copyright" style="margin-top: 50px;">
+			<ul>
+				<li>&copy; Festimates 2026</li>
+			</ul>
+		</div>
+	</div>
+
+	<!-- Contact Dialog -->
+	<div id="dialog-contact" class="footer-overlay" role="dialog" aria-labelledby="contact-title" aria-modal="true">
+		<div class="footer-overlay-panel">
+			<h2 id="contact-title">Contact</h2>
+			<form id="contact-form" class="overlay-body">
+				<div class="form-group">
+					<label for="contact-name">Name</label>
+					<input type="text" id="contact-name" name="name" required />
+				</div>
+				<div class="form-group">
+					<label for="contact-email">E-Mail</label>
+					<input type="email" id="contact-email" name="email" required />
+				</div>
+				<div class="form-group">
+					<label for="contact-message">Message</label>
+					<textarea id="contact-message" name="message" rows="4" required></textarea>
+				</div>
+				<button type="submit" class="button style1">Send</button>
+			</form>
+		</div>
+	</div>
+
+	<!-- Legal  Dialog -->
+	<div id="dialog-impressum" class="footer-overlay" role="dialog" aria-labelledby="impressum-title" aria-modal="true">
+		<div class="footer-overlay-panel">
+			<h2 id="impressum-title">Imprint</h2>
+			<div class="overlay-body">
+				<p><strong>Information according to § 5 TMG</strong></p>
+				<p><strong>Mailing Address</strong><br />
+					Martin Jäger<br />
+					Festimates<br />
+					Broichstr. 16<br />
+					51109 Köln</p>
+				<p><strong>Contact:</strong><br />Phone: +49 163 8751205<br />E-Mail: contact@festimates.app</p>
+				<p><strong>Design &amp; Template</strong><br />
+					Website design based on a template by
+					<a href="https://html5up.net" target="_blank" rel="noopener">HTML5 UP</a>
+					<br />
+					Used under the Creative Commons Attribution 3.0 License.
+				</p>
+				<p><strong>Image Credits</strong><br />
+					<a href="https://de.freepik.com/fotos-kostenlos/camping-am-see-mit-guten-freunden_12232888.htm"
+						target="_blank" rel="noopener">Image by gpointstudio on Freepik</a><br />
+					<a href="https://de.freepik.com/fotos-kostenlos/ein-mann-spielt-saxophon_1275094.htm#fromView=search&page=1&position=1&uuid=07883e2d-5743-4607-b9c7-1cd56dde3c4f&query=band+performance"
+						target="_blank" rel="noopener">Image by v.ivash on Freepik</a><br />
+					<a href="https://de.freepik.com/kostenloses-ki-bild/farbenfrohe-feier-des-holi-festivals_411813428.htm#fromView=search&page=1&position=2&uuid=10189562-3c46-47ac-993b-916bb261352f&query=holi+festival"
+						target="_blank" rel="noopener">Image by freepik</a><br />
+					<a href="https://de.freepik.com/fotos-kostenlos/reisende-die-abstand-suchen_1915314.htm"
+						target="_blank" rel="noopener">Image by freepik</a>
+				</p>
+			</div>
+		</div>
+	</div>
+
+	<!-- Datenschutz Dialog -->
+	<div id="dialog-datenschutz" class="footer-overlay" role="dialog" aria-labelledby="datenschutz-title"
+		aria-modal="true">
+		<div class="footer-overlay-panel">
+			<h2 id="datenschutz-title">Privacy Policy</h2>
+			<div class="overlay-body">
+				<p>This privacy policy is applicable to the Festimates app (hereinafter referred to as "Application") for mobile devices, which was developed by Martin Jäger - Festimates (hereinafter referred to as "Service Provider") as a a Freemium service. This service is provided "AS IS".</p>
+				
+				<p><strong>What information does the Application obtain and how is it used?</strong><br />
+				The Application acquires the information you supply when you download and register the Application. Registration with the Service Provider is not mandatory. However, bear in mind that you might not be able to utilize some of the features offered by the Application unless you register with them.</p>
+
+				<p>The Service Provider may also use the information you provided them to contact you from time to time to provide you with important information, required notices and marketing promotions.</p>
+
+				<p><strong>What information does the Application collect automatically?</strong><br />
+				In addition, the Application may collect certain information automatically, including, but not limited to, the type of mobile device you use, your mobile devices unique device ID, the IP address of your mobile device, your mobile operating system, the type of mobile Internet browsers you use, and information about the way you use the Application.</p>
+
+				<p><strong>Does the Application collect precise real time location information of the device?</strong><br />
+				This Application does not gather precise information about the location of your mobile device.</p>
+
+				<p><strong>Does the Application use Artificial Intelligence (AI) technologies?</strong><br />
+				The Application does not use Artificial Intelligence (AI) technologies to process your data or provide features.</p>
+
+				<p><strong>Do third parties see and/or have access to information obtained by the Application?</strong><br />
+				Only aggregated, anonymized data is periodically transmitted to external services to aid the Service Provider in improving the Application and their service. The Service Provider may share your information with third parties in the ways that are described in this privacy statement.</p>
+
+				<p>Please note that the Application utilizes third-party services that have their own Privacy Policy about handling data. Below are the links to the Privacy Policy of the third-party service providers used by the Application:</p>
+				<ul>
+					<li>Google Play Services</li>
+					<li>Google Analytics for Firebase</li>
+					<li>Firebase Crashlytics</li>
+				</ul>
+
+				<p>The Service Provider may disclose User Provided and Automatically Collected Information:</p>
+				<ul>
+					<li>as required by law, such as to comply with a subpoena, or similar legal process;</li>
+					<li>when they believe in good faith that disclosure is necessary to protect their rights, protect your safety or the safety of others, investigate fraud, or respond to a government request;</li>
+					<li>with their trusted services providers who work on their behalf, do not have an independent use of the information we disclose to them, and have agreed to adhere to the rules set forth in this privacy statement.</li>
+				</ul>
+
+				<p><strong>What are my opt-out rights?</strong><br />
+				You can halt all collection of information by the Application easily by uninstalling the Application. You may use the standard uninstall processes as may be available as part of your mobile device or via the mobile application marketplace or network.</p>
+
+				<p><strong>What is the data retention policy and how can you manage your information?</strong><br />
+				The Service Provider will retain User Provided data for as long as you use the Application and for a reasonable time thereafter. The Service Provider will retain Automatically Collected information for up to 24 months and thereafter may store it in aggregate. If you'd like the Service Provider to delete User Provided Data that you have provided via the Application, please contact them at <a href="mailto:contact@festimates.app">contact@festimates.app</a> and we will respond in a reasonable time. Please note that some or all of the User Provided Data may be required in order for the Application to function properly.</p>
+
+				<p><strong>How does the Application address children's privacy?</strong><br />
+				The Service Provider does not use the Application to knowingly solicit data from or market to children under the age of 13.</p>
+
+				<p>The Application does not address anyone under the age of 13. The Service Provider does not knowingly collect personally identifiable information from children under 13 years of age. In the case the Service Provider discover that a child under 13 has provided personal information, the Service Provider will immediately delete this from their servers. If you are a parent or guardian and you are aware that your child has provided us with personal information, please contact the Service Provider (<a href="mailto:contact@festimates.app">contact@festimates.app</a>) so that they will be able to take the necessary actions.</p>
+
+				<p><strong>How is your information kept secure?</strong><br />
+				The Service Provider are concerned about safeguarding the confidentiality of your information. The Service Provider provide physical, electronic, and procedural safeguards to protect information we process and maintain. For example, we limit access to this information to authorized employees and contractors who need to know that information in order to operate, develop or improve their Application. Please be aware that, although we endeavor provide reasonable security for information we process and maintain, no security system can prevent all potential security breaches.</p>
+
+				<p><strong>How will you be informed of changes to this Privacy Policy?</strong><br />
+				This Privacy Policy may be updated from time to time for any reason. The Service Provider will notify you of any changes to the Privacy Policy by updating this page with the new Privacy Policy. You are advised to consult this Privacy Policy regularly for any changes, as continued use is deemed approval of all changes.</p>
+
+				<p>This privacy policy is effective as of 2026-03-16</p>
+
+				<p><strong>How do you give your consent?</strong><br />
+				By using the Application, you are giving your consent to the Service Provider processing of your information as set forth in this Privacy Policy now and as amended by us. "Processing,” means using cookies on a computer/hand held device or using or touching information in any way, including, but not limited to, collecting, storing, deleting, using, combining and disclosing information.</p>
+
+				<p><strong>How can you contact us?</strong><br />
+				If you have any questions regarding privacy while using the Application, or have questions about the practices, please contact the Service Provider via email at <a href="mailto:contact@festimates.app">contact@festimates.app</a>.</p>
+
+				<p><i>This privacy policy page was generated by App Privacy Policy Generator</i></p>
+			</div>
+		</div>
+	</div>
+
+	<!-- EULA Dialog -->
+	<div id="dialog-eula" class="footer-overlay" role="dialog" aria-labelledby="eula-title" aria-modal="true">
+		<div class="footer-overlay-panel">
+			<h2 id="eula-title">End User License Agreement (EULA)</h2>
+			<div class="overlay-body">
+				<p>These terms and conditions apply to the Festimates app (hereby referred to as "Application") for mobile devices that was created by Martin Jäger - Festimates (hereby referred to as "Service Provider") as a Freemium service.</p>
+				
+				<p>Upon downloading or utilizing the Application, you are automatically agreeing to the following terms. It is strongly advised that you thoroughly read and understand these terms prior to using the Application.</p>
+				
+				<p>Unauthorized copying, modification of the Application, any part of the Application, or our trademarks is strictly prohibited. Any attempts to extract the source code of the Application, translate the Application into other languages, or create derivative versions are not permitted. All trademarks, copyrights, database rights, and other intellectual property rights related to the Application remain the property of the Service Provider.</p>
+				
+				<p>The Service Provider is dedicated to ensuring that the Application is as beneficial and efficient as possible. As such, they reserve the right to modify the Application or charge for their services at any time and for any reason. The Service Provider assures you that any charges for the Application or its services will be clearly communicated to you.</p>
+				
+				<p>The Application stores and processes personal data that you have provided to the Service Provider in order to provide the Service. It is your responsibility to maintain the security of your phone and access to the Application. The Service Provider strongly advise against jailbreaking or rooting your phone, which involves removing software restrictions and limitations imposed by the official operating system of your device. Such actions could expose your phone to malware, viruses, malicious programs, compromise your phone's security features, and may result in the Application not functioning correctly or at all.</p>
+				
+				<p>Please note that the Application utilizes third-party services that have their own Terms and Conditions. Below are the links to the Terms and Conditions of the third-party service providers used by the Application:</p>
+				<ul>
+					<li>Google Play Services</li>
+					<li>Google Analytics for Firebase</li>
+					<li>Firebase Crashlytics</li>
+				</ul>
+				
+				<p>Please be aware that the Service Provider does not assume responsibility for certain aspects. Some functions of the Application require an active internet connection, which can be Wi-Fi or provided by your mobile network provider. The Service Provider cannot be held responsible if the Application does not function at full capacity due to lack of access to Wi-Fi or if you have exhausted your data allowance.</p>
+				
+				<p>If you are using the application outside of a Wi-Fi area, please be aware that your mobile network provider's agreement terms still apply. Consequently, you may incur charges from your mobile provider for data usage during the connection to the application, or other third-party charges. By using the application, you accept responsibility for any such charges, including roaming data charges if you use the application outside of your home territory (i.e., region or country) without disabling data roaming. If you are not the bill payer for the device on which you are using the application, they assume that you have obtained permission from the bill payer.</p>
+				
+				<p>Similarly, the Service Provider cannot always assume responsibility for your usage of the application. For instance, it is your responsibility to ensure that your device remains charged. If your device runs out of battery and you are unable to access the Service, the Service Provider cannot be held responsible.</p>
+				
+				<p>In terms of the Service Provider's responsibility for your use of the application, it is important to note that while they strive to ensure that it is updated and accurate at all times, they do rely on third parties to provide information to them so that they can make it available to you. The Service Provider accepts no liability for any loss, direct or indirect, that you experience as a result of relying entirely on this functionality of the application.</p>
+				
+				<p>The Service Provider may wish to update the application at some point. The application is currently available as per the requirements for the operating system (and for any additional systems they decide to extend the availability of the application to) may change, and you will need to download the updates if you want to continue using the application. The Service Provider does not guarantee that it will always update the application so that it is relevant to you and/or compatible with the particular operating system version installed on your device. However, you agree to always accept updates to the application when offered to you. The Service Provider may also wish to cease providing the application and may terminate its use at any time without providing termination notice to you. Unless they inform you otherwise, upon any termination, (a) the rights and licenses granted to you in these terms will end; (b) you must cease using the application, and (if necessary) delete it from your device.</p>
+				
+				<p><strong>Changes to These Terms and Conditions</strong><br />
+				The Service Provider may periodically update their Terms and Conditions. Therefore, you are advised to review this page regularly for any changes. The Service Provider will notify you of any changes by posting the new Terms and Conditions on this page.</p>
+				
+				<p>These terms and conditions are effective as of 2026-03-16</p>
+				
+				<p><strong>Contact Us</strong><br />
+				If you have any questions or suggestions about the Terms and Conditions, please do not hesitate to contact the Service Provider at <a href="mailto:contact@festimates.app">contact@festimates.app</a>.</p>
+			</div>
+		</div>
+	</div>
+
+	<!-- Scripts -->
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/jquery.dropotron.min.js"></script>
+	<script src="assets/js/browser.min.js"></script>
+	<script src="assets/js/breakpoints.min.js"></script>
+	<script src="assets/js/util.js"></script>
+	<script src="assets/js/main.js"></script>
+	<script>
+		(function () {
+			function openDialog(id) {
+				var el = document.getElementById('dialog-' + id);
+				if (el) {
+					el.classList.add('is-open');
+					document.body.style.overflow = 'hidden';
+				}
+				if (id === 'datenschutz' || id === 'eula') {
+					var url = new URL(window.location.href);
+					url.searchParams.set('page', id);
+					window.history.replaceState({}, '', url.toString());
+				}
+			}
+			function closeDialog(id) {
+				var el = document.getElementById('dialog-' + id);
+				if (el) {
+					el.classList.remove('is-open');
+					document.body.style.overflow = '';
+				}
+				if (id === 'datenschutz' || id === 'eula') {
+					var url = new URL(window.location.href);
+					url.searchParams.delete('page');
+					window.history.replaceState({}, '', url.toString());
+				}
+				if (id === 'contact') {
+					var form = document.getElementById('contact-form');
+					if (form) form.reset();
+				}
+			}
+			var pageParam = new URLSearchParams(window.location.search).get('page');
+			if (pageParam === 'datenschutz' || pageParam === 'eula') {
+				openDialog(pageParam);
+			}
+			document.querySelectorAll('.footer-lower-bar a[data-dialog]').forEach(function (link) {
+				link.addEventListener('click', function (e) {
+					e.preventDefault();
+					openDialog(link.getAttribute('data-dialog'));
+				});
+			});
+
+			document.querySelectorAll('.footer-overlay').forEach(function (overlay) {
+				overlay.addEventListener('click', function (e) {
+					if (e.target === overlay) {
+						var id = overlay.id.replace('dialog-', '');
+						closeDialog(id);
+					}
+				});
+			});
+			document.getElementById('contact-form').addEventListener('submit', function (e) {
+				e.preventDefault();
+				
+				var name = document.getElementById('contact-name').value;
+				var email = document.getElementById('contact-email').value;
+				var message = document.getElementById('contact-message').value;
+
+				var subject = encodeURIComponent('Festimates Contact Form');
+				var body = encodeURIComponent(
+					"Name: " + name + "\n" +
+					"E-Mail: " + email + "\n\n" +
+					"Message:\n" + message
+				);
+
+				window.location.href = 'mailto:contact@festimates.app?subject=' + subject + '&body=' + body;
+				
+				closeDialog('contact');
+			});
+		})();
+	</script>
+
+</body>
+
 </html>
