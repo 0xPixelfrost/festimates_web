@@ -242,6 +242,30 @@
 			resize: vertical;
 		}
 
+		.footer-overlay-panel .dialog-close {
+			position: absolute;
+			top: 0.5rem;
+			right: 1rem;
+			background: transparent;
+			border: none;
+			font-size: 2.2rem;
+			line-height: 1;
+			color: #aaa;
+			cursor: pointer;
+			padding: 0.25rem;
+			box-shadow: none !important;
+			outline: none;
+			width: auto;
+			min-width: 0;
+			height: auto;
+			z-index: 10;
+		}
+
+		.footer-overlay-panel .dialog-close:hover {
+			color: #484d55;
+			background: transparent !important;
+		}
+
 		@media (max-width: 736px) {
 			.footer-overlay {
 				padding: 0;
@@ -431,6 +455,7 @@
 	<!-- Contact Dialog -->
 	<div id="dialog-contact" class="footer-overlay" role="dialog" aria-labelledby="contact-title" aria-modal="true">
 		<div class="footer-overlay-panel">
+			<button class="dialog-close" aria-label="Close" type="button">&times;</button>
 			<h2 id="contact-title">Contact</h2>
 			<form id="contact-form" class="overlay-body">
 				<div class="form-group">
@@ -453,6 +478,7 @@
 	<!-- Legal  Dialog -->
 	<div id="dialog-impressum" class="footer-overlay" role="dialog" aria-labelledby="impressum-title" aria-modal="true">
 		<div class="footer-overlay-panel">
+			<button class="dialog-close" aria-label="Close" type="button">&times;</button>
 			<h2 id="impressum-title">Imprint</h2>
 			<div class="overlay-body">
 			</div>
@@ -463,6 +489,7 @@
 	<div id="dialog-datenschutz" class="footer-overlay" role="dialog" aria-labelledby="datenschutz-title"
 		aria-modal="true">
 		<div class="footer-overlay-panel">
+			<button class="dialog-close" aria-label="Close" type="button">&times;</button>
 			<h2 id="datenschutz-title">Privacy Policy</h2>
 			<div class="overlay-body">
 			</div>
@@ -472,6 +499,7 @@
 	<!-- EULA Dialog -->
 	<div id="dialog-eula" class="footer-overlay" role="dialog" aria-labelledby="eula-title" aria-modal="true">
 		<div class="footer-overlay-panel">
+			<button class="dialog-close" aria-label="Close" type="button">&times;</button>
 			<h2 id="eula-title">End User License Agreement (EULA)</h2>
 			<div class="overlay-body">
 			</div>
@@ -507,7 +535,9 @@
 			}
 
 			function openDialog(id) {
-				var lang = navigator.language || navigator.userLanguage || 'en';
+				var urlParams = new URLSearchParams(window.location.search);
+				var urlLang = urlParams.get('lang');
+				var lang = urlLang || navigator.language || navigator.userLanguage || 'en';
 				var folder = lang.startsWith('de') ? 'de' : 'en';
 
 				if (id === 'impressum') loadContent(id, 'content/' + folder + '/impressum.html');
@@ -555,6 +585,16 @@
 			document.querySelectorAll('.footer-overlay').forEach(function (overlay) {
 				overlay.addEventListener('click', function (e) {
 					if (e.target === overlay) {
+						var id = overlay.id.replace('dialog-', '');
+						closeDialog(id);
+					}
+				});
+			});
+
+			document.querySelectorAll('.dialog-close').forEach(function (btn) {
+				btn.addEventListener('click', function (e) {
+					var overlay = btn.closest('.footer-overlay');
+					if (overlay) {
 						var id = overlay.id.replace('dialog-', '');
 						closeDialog(id);
 					}
