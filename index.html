@@ -581,6 +581,14 @@
 			} else if (pageParam === 'imprint' || pageParam === 'impressum') {
 				openDialog('imprint');
 			}
+
+			// webview specific parameter to hide the close button
+			var hideCloseParam = new URLSearchParams(window.location.search).get('wv');
+			if (hideCloseParam === '1') {
+				document.querySelectorAll('.dialog-close').forEach(function(btn) {
+					btn.style.display = 'none';
+				});
+			}
 			document.querySelectorAll('.footer-lower-bar a[data-dialog]').forEach(function (link) {
 				link.addEventListener('click', function (e) {
 					e.preventDefault();
