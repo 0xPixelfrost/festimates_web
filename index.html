@@ -441,9 +441,9 @@
 	<div id="bottom-bar">
 		<nav class="footer-lower-bar">
 			<a href="#" data-dialog="contact">Contact</a>
-			<a href="#" data-dialog="impressum">Imprint</a>
-			<a href="?page=privacy" data-dialog="datenschutz">Privacy Policy</a>
-			<a href="?page=terms" data-dialog="eula">T&Cs</a>
+			<a href="?page=imprint" data-dialog="imprint">Imprint</a>
+			<a href="?page=privacy" data-dialog="privacy">Privacy Policy</a>
+			<a href="?page=terms" data-dialog="eula">Terms & Conditions</a>
 		</nav>
 		<div id="copyright" style="margin-top: 50px;">
 			<ul>
@@ -476,21 +476,21 @@
 	</div>
 
 	<!-- Legal  Dialog -->
-	<div id="dialog-impressum" class="footer-overlay" role="dialog" aria-labelledby="impressum-title" aria-modal="true">
+	<div id="dialog-imprint" class="footer-overlay" role="dialog" aria-labelledby="imprint-title" aria-modal="true">
 		<div class="footer-overlay-panel">
 			<button class="dialog-close" aria-label="Close" type="button">&times;</button>
-			<h2 id="impressum-title">Imprint</h2>
+			<h2 id="imprint-title">Imprint</h2>
 			<div class="overlay-body">
 			</div>
 		</div>
 	</div>
 
-	<!-- Datenschutz Dialog -->
-	<div id="dialog-datenschutz" class="footer-overlay" role="dialog" aria-labelledby="datenschutz-title"
+	<!-- Privacy Policy Dialog -->
+	<div id="dialog-privacy" class="footer-overlay" role="dialog" aria-labelledby="privacy-title"
 		aria-modal="true">
 		<div class="footer-overlay-panel">
 			<button class="dialog-close" aria-label="Close" type="button">&times;</button>
-			<h2 id="datenschutz-title">Privacy Policy</h2>
+			<h2 id="privacy-title">Privacy Policy</h2>
 			<div class="overlay-body">
 			</div>
 		</div>
@@ -520,14 +520,14 @@
 				if (container && container.innerHTML.trim() === '') {
 					container.innerHTML = '<p>Loading...</p>';
 					fetch(url)
-						.then(function(res) {
+						.then(function (res) {
 							if (!res.ok) throw new Error('Network response was not ok');
 							return res.text();
 						})
-						.then(function(html) {
+						.then(function (html) {
 							container.innerHTML = html;
 						})
-						.catch(function(err) {
+						.catch(function (err) {
 							console.error(err);
 							container.innerHTML = '<p>Could not load content. (Are you offline or using a file:// URL?)</p>';
 						});
@@ -540,8 +540,8 @@
 				var lang = urlLang || navigator.language || navigator.userLanguage || 'en';
 				var folder = lang.startsWith('de') ? 'de' : 'en';
 
-				if (id === 'impressum') loadContent(id, 'content/' + folder + '/impressum.html');
-				if (id === 'datenschutz') loadContent(id, 'content/' + folder + '/privacy.html');
+				if (id === 'imprint') loadContent(id, 'content/' + folder + '/imprint.html');
+				if (id === 'privacy') loadContent(id, 'content/' + folder + '/privacy.html');
 				if (id === 'eula') loadContent(id, 'content/' + folder + '/eula.html');
 
 				var el = document.getElementById('dialog-' + id);
@@ -549,9 +549,11 @@
 					el.classList.add('is-open');
 					document.body.style.overflow = 'hidden';
 				}
-				if (id === 'datenschutz' || id === 'eula') {
+				if (id === 'privacy' || id === 'eula' || id === 'imprint') {
 					var url = new URL(window.location.href);
-					url.searchParams.set('page', id);
+					var pageId = id;
+					if (id === 'eula') pageId = 'terms';
+					url.searchParams.set('page', pageId);
 					window.history.replaceState({}, '', url.toString());
 				}
 			}
@@ -561,7 +563,7 @@
 					el.classList.remove('is-open');
 					document.body.style.overflow = '';
 				}
-				if (id === 'datenschutz' || id === 'eula') {
+				if (id === 'privacy' || id === 'eula' || id === 'imprint') {
 					var url = new URL(window.location.href);
 					url.searchParams.delete('page');
 					window.history.replaceState({}, '', url.toString());
@@ -572,8 +574,12 @@
 				}
 			}
 			var pageParam = new URLSearchParams(window.location.search).get('page');
-			if (pageParam === 'datenschutz' || pageParam === 'eula') {
-				openDialog(pageParam);
+			if (pageParam === 'privacy' || pageParam === 'datenschutz') {
+				openDialog('privacy');
+			} else if (pageParam === 'terms' || pageParam === 'eula') {
+				openDialog('eula');
+			} else if (pageParam === 'imprint' || pageParam === 'impressum') {
+				openDialog('imprint');
 			}
 			document.querySelectorAll('.footer-lower-bar a[data-dialog]').forEach(function (link) {
 				link.addEventListener('click', function (e) {
@@ -602,7 +608,7 @@
 			});
 			document.getElementById('contact-form').addEventListener('submit', function (e) {
 				e.preventDefault();
-				
+
 				var name = document.getElementById('contact-name').value;
 				var email = document.getElementById('contact-email').value;
 				var message = document.getElementById('contact-message').value;
@@ -615,7 +621,7 @@
 				);
 
 				window.location.href = 'mailto:contact@festimates.app?subject=' + subject + '&body=' + body;
-				
+
 				closeDialog('contact');
 			});
 		})();
