@@ -526,11 +526,26 @@
 						})
 						.then(function (html) {
 							container.innerHTML = html;
+							if (window.location.hash) {
+								setTimeout(function() {
+									var targetId = window.location.hash.substring(1);
+									var targetEl = document.getElementById(targetId);
+									if (targetEl) targetEl.scrollIntoView({ behavior: 'smooth' });
+								}, 100);
+							}
 						})
 						.catch(function (err) {
 							console.error(err);
 							container.innerHTML = '<p>Could not load content. (Are you offline or using a file:// URL?)</p>';
 						});
+				} else if (container) {
+					if (window.location.hash) {
+						setTimeout(function() {
+							var targetId = window.location.hash.substring(1);
+							var targetEl = document.getElementById(targetId);
+							if (targetEl) targetEl.scrollIntoView({ behavior: 'smooth' });
+						}, 100);
+					}
 				}
 			}
 
